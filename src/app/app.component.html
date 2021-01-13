@@ -1,0 +1,135 @@
+<div class="container-fluid" style="height:100%;">
+<div class="card container-fluid" style="height:100%;">
+  <div class="card-header text-center">Weather Info</div>
+  <div class="card-body">
+   
+  <div class="row" style="height:100%;">
+    <div class="col-sm-4">
+      <div class="card" style="height:100%;">
+        <div class="card-header text-center">
+          <div class="row">
+          <div class="col-sm-9">
+            <div class="md-form form-sm" style="margin:0px">
+              <input mdbInput type="text" id="form1" [(ngModel)]="cityName" class="form-control form-control-sm">
+              <label for="form1" class="">Example label</label>
+            </div>
+          </div>
+          <div class="col-sm-3 " (click)="getWeatherInfo(1)">
+            <a href="#" class="btn card-input">+</a>
+          </div>
+          </div>
+        </div>
+        <div class="card-body ">
+          <!-- <h5 class="card-title ">Special title treatment</h5> -->
+          <!-- <p class="card-text">
+            With supporting text below as a natural lead-in to additional content.
+          </p> -->
+          <ul class="list-group list-group-flush ">
+            <li class="list-group-item list-group-head">Recent locations</li>
+          </ul>  
+          <ul class="list-group list-group-flush" *ngFor="let data of usersArray; let i = index">
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-sm-8 " >
+                  <a href="#" class="btn cname" (click)="getWeatherInfo(data.name)">{{data.name}} {{data.main.temp}}C  {{data.weather[0].main}}</a>
+                </div>
+              <div class="col-sm-2" (click)="refreshData(data.name,i)">
+                <a href="#" class="btn btn-refresh"> <i class="fas fa-sync"></i></a>
+              </div>
+              <div class="col-sm-2" (click)="deleteItem(i)">
+                <a href="#" class="btn btn-close" >X</a>
+              </div>
+            </div>
+            </li>
+            <!-- <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Vestibulum at eros</li> -->
+          </ul>
+        </div>
+        <div class="card-footer text-muted card-btn">
+            <a href="#" class="btn btn-primary " (click)="clearAll()">Clear</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-8" style="height:100%;">
+      <div class="ref_icon" (click)="getWeatherInfo(repos.city.name)"><i class="fas fa-sync"></i></div>
+      <div class="card" style="height:100%;">
+        <div class="card-body">
+          <h5 class="card-title">Halifax</h5>
+          <div class="row">
+            <div class="col-sm-4" style="padding: 0px;">
+              <img
+              src="/assets/animated/rainy-1.svg"
+              alt="..."
+              class="img-card"
+            />
+            </div>
+            <div class="col-sm-8" style="padding: 0px;">
+              <p class="card-text">
+                {{repos.list[0].temp.day}}C
+              </p> 
+              <p class="card-text">
+                {{repos.list[0].weather[0].description}}
+              </p> 
+              <p class="card-text">
+                Wind : {{repos.list[0].speed}}ms {{repos.list[0].deg}}deg 
+              </p> 
+              <p class="card-text">
+               Pressure : {{repos.list[0].pressure}}
+              </p> 
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="future">
+                <div class="day" *ngFor="let data of  repos.list">
+                  <p>{{getDate(data.dt)}}</p>
+                  <p>{{getStr(data.dt)}}</p>
+                  <div><img
+                    src="/assets/animated/cloudy.svg"
+                    alt="..."
+                    class="img-fluid" style="width: 45px;"
+                  /></div>
+                  <p>{{data.temp.day}}C</p>
+              </div>
+                <!-- <div class="day">
+                    <p>13</p>
+                    <p>Tue</p>
+                    <div><img
+                      src="/assets/animated/cloudy.svg"
+                      alt="..."
+                      class="img-fluid" style="width: 45px;"
+                    /></div>
+                    <p>{{repos.list[0].temp.day}}C</p>
+                </div> -->
+                <!-- <div class="day">
+                  <p>13</p>
+                  <p>Tue</p>
+                  <div><img
+                    src="/assets/animated/cloudy.svg"
+                    alt="..."
+                    class="img-fluid" style="width: 45px;"
+                  /></div>
+                  <p>15C</p>
+              </div> -->
+              <!-- <div class="day">
+                <p>13</p>
+                <p>Tue</p>
+                <div><img
+                  src="/assets/animated/cloudy.svg"
+                  alt="..."
+                  class="img-fluid" style="width: 45px;"
+                /></div>
+                <p>15C</p>
+            </div> -->
+           
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
